@@ -17,6 +17,7 @@ import { CartPageCardComponent } from './components/partials/cart/cartpagecard/c
 import { TaxPipe } from './pipes/tax.pipe';
 import { CheckoutComponent } from './routes/checkout/checkout/checkout.component';
 import { CustomDatePipe } from './pipes/date.pipe';
+import { Angular4PaystackModule } from 'angular4-paystack';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,9 @@ import { CustomDatePipe } from './pipes/date.pipe';
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    Angular4PaystackModule.forRoot(
+      'sk_test_d61ebe0c6f5c39025768cebaa7d3a12a92fced29'
+    ),
   ],
   providers: [ProductsService, CategoriesService],
   bootstrap: [AppComponent],

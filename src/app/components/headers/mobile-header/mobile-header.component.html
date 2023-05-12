@@ -1,5 +1,5 @@
 <header
-  class="max-w-[1200px] mx-auto flex lg:hidden items-center justify-between relative px-10 py-3"
+  class="max-w-[1200px] mx-auto flex lg:hidden items-center justify-between relative px-10 py-3 z-[20]"
 >
   <a class="block" routerLink="/">
     <svg
@@ -112,7 +112,7 @@
             }}"
             (click)="selectCategory(category)"
           >
-            {{ category.name }}
+            {{ category.name | titlecase }}
           </button>
         </li>
       </ul>

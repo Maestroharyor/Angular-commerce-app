@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { CartProduct } from 'src/app/types';
+import { Router } from '@angular/router';
+import { PaystackOptions } from 'angular4-paystack';
 
 @Component({
   selector: 'app-cart-modal',
@@ -32,12 +34,33 @@ export class CartModalComponent {
 
   cart: CartProduct[] = [];
   total = 0;
+  title = '';
+  options: PaystackOptions = {
+    amount: 50000,
+    email: 'user@mail.com',
+    ref: `${Math.ceil(Math.random() * 10e10)}`,
+  };
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private router: Router
+  ) {}
+
+  paymentInit() {
+    console.log('Payment initialized');
+  }
+
+  paymentDone(ref: any) {
+    this.title = 'Payment successfull';
+    this.router.navigate(['/checkout']);
+  }
+
+  paymentCancel() {
+    console.log('payment failed');
+  }
   ngOnInit() {
     this.productsService.getCart$().subscribe((cart) => {
       this.cart = cart;
-      // console.log(this.cart);
     });
     this.productsService.getTotalPrices().subscribe((total) => {
       this.total = total;

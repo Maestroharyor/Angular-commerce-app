@@ -42,6 +42,9 @@ export class ProductDetailComponent {
       this.product = this.productsService.getAProduct(id);
     });
   }
+  addItemToCart(product: Product) {
+    this.productsService.addToCart(product);
+  }
 
   faArrowLeft = faArrowLeft;
 }

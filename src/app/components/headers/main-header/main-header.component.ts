@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faCartShopping,
   faDollarSign,
@@ -30,7 +31,8 @@ export class MainHeaderComponent {
   categories: Category[] = [];
   constructor(
     private productsService: ProductsService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -39,12 +41,14 @@ export class MainHeaderComponent {
     });
     this.productsService.getCart$().subscribe((cart) => {
       this.cart = cart;
-      // console.log(this.cart);
     });
   }
 
   selectCategory(category: Category) {
     this.categoryService.selectCategory(category);
+    if (this.router.url !== '/') {
+      this.router.navigate(['/']);
+    }
   }
 
   faCartShopping = faCartShopping;
