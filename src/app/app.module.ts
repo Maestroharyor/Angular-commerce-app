@@ -41,7 +41,7 @@ import { Angular4PaystackModule } from 'angular4-paystack';
     FontAwesomeModule,
     BrowserAnimationsModule,
     Angular4PaystackModule.forRoot(
-      'sk_test_d61ebe0c6f5c39025768cebaa7d3a12a92fced29'
+      'pk_test_228b96ef0b3cea38144ed7f081988634aa888577'
     ),
   ],
   providers: [ProductsService, CategoriesService],
