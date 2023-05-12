@@ -52,6 +52,7 @@ export class CartModalComponent {
 
   paymentDone(ref: any) {
     this.title = 'Payment successfull';
+    this.showCartModal = false;
     this.router.navigate(['/checkout']);
   }
 
