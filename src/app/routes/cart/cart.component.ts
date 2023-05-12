@@ -35,7 +35,7 @@ export class CartComponent {
   totalQuantity = 0;
   title = '';
   options: PaystackOptions = {
-    amount: this.total * 100,
+    amount: this.total * 100 || 500000,
     email: 'user@mail.com',
     ref: `${Math.ceil(Math.random() * 10e10)}`,
   };
