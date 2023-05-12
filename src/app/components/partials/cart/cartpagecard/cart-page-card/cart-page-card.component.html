@@ -1,0 +1,60 @@
+<div class="flex flex-col md:flex-row justify-between gap-3 py-7">
+  <div class="md:w-[50%] flex flex-col gap-3">
+    <p class="text-[16px]">Apollo Running Short</p>
+    <div class="text-[16px]">
+      <p>Price</p>
+      {{ 50 | currency : "USD" }}
+    </div>
+    <div class="">
+      <p class="mb-1.5 text-[16px]">Size:</p>
+      <div class="flex gap-3">
+        <div
+          *ngFor="let size of product.size"
+          class="py-1 px-3 border-2 text-[14px]"
+        >
+          {{ size }}
+        </div>
+      </div>
+    </div>
+    <div class="text-[16px]">
+      <p class="mb-1.5">Color:</p>
+      <div class="flex gap-3">
+        <div
+          *ngFor="let color of product.color"
+          class="w-[22px] h-[22px]"
+          [ngStyle]="{ 'background-color': color.hexcode }"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="w-fit flex flex-col md:flex-row gap-1 overflow-hidden {{
+      showEditButton ? 'gap-1' : 'gap-3'
+    }}"
+  >
+    <div
+      class="flex flex-row  justify-between items-center {{
+        showEditButton ? 'md:flex-col' : ''
+      }}"
+    >
+      <button
+        class="py-1 px-3 text-[14px] border-2 hover:bg-black hover:text-white transition-all duration-300 ease-in-out"
+        (click)="addItemToCart(product)"
+        *ngIf="showEditButton"
+      >
+        +
+      </button>
+      <p>{{ showEditButton ? "" : "QTY: " }} {{ product.quantity }}</p>
+      <button
+        class="py-1 px-3 border-2 text-[14px] hover:bg-black hover:text-white transition-all duration-300 ease-in-out"
+        (click)="removeItemFromCart(product)"
+        *ngIf="showEditButton"
+      >
+        -
+      </button>
+    </div>
+    <figure class="h-[280px] flex items-center overflow-hidden">
+      <img [src]="product.featuredImage" class="w-full" />
+    </figure>
+  </div>
+</div>

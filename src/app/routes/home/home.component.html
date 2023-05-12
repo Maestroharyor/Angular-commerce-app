@@ -1,0 +1,12 @@
+<main class="max-w-[1200px] px-5 md:px-10 mx-auto py-16">
+  <h1 class="mb-10 text-[42px] color-[#1D1F22]">
+    {{ getProductCategoryTitle(selectedCategory.name) }}
+  </h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <app-productcard
+      *ngFor="let product of products"
+      [product]="product"
+      [@productAnimation]
+    ></app-productcard>
+  </div>
+</main>

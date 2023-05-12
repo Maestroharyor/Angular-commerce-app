@@ -1,0 +1,66 @@
+<div
+  class="modal fixed w-full h-full top-16 left-0 flex items-start justify-center z-[10]"
+  [@cartModalAnimation]
+  *ngIf="showCartModal"
+>
+  <div
+    class="modal-overlay absolute w-full h-full bg-black opacity-40 z-[11]"
+    (click)="toggleModal()"
+  ></div>
+
+  <div
+    class="modal-container absolute top-0 bg-white md:max-w-md mx-auto rounded-b shadow-lg z-[12] right-0 2xl:right-[350px] max-w-[325px] w-full"
+  >
+    <div class="modal-content py-4 text-left px-6 flex flex-col gap-5">
+      <!--Title-->
+      <div class="flex justify-between items-center pb-3">
+        <p class="text-[16px] font-bold">
+          {{ cart.length ? "My Bag" : "No items in Bag" }}
+          <span *ngIf="cart.length" class="font-normal"
+            >, {{ cart.length }} items</span
+          >
+        </p>
+      </div>
+
+      <div
+        class="py-7 flex flex-col gap-8"
+        *ngIf="cart.length; else noCartContent"
+      >
+        <app-cartmodalcard
+          *ngFor="let product of cart"
+          [product]="product"
+        ></app-cartmodalcard>
+      </div>
+      <ng-template #noCartContent>
+        <div class="pt-5 pb-8">
+          <p>No items added to cart yet...</p>
+          <p class="text-sm italic text-gray-400">
+            Time to get your shopping groove on 👌
+          </p>
+        </div>
+      </ng-template>
+
+      <div *ngIf="total">
+        <p>Total: {{ total | currency : "USD" }}</p>
+      </div>
+
+      <!--Body-->
+      <div>
+        <div class="flex justify-between gap-5 flex-wrap">
+          <a
+            routerLink="/cart"
+            (click)="toggleModal()"
+            class="text-[14px] text-[#1D1F22] px-5 py-3 text-center flex-1 border-2 border-[#1D1F22] hover:bg-[#1D1F22] hover:text-white transition-all duration-300 ease-in-out"
+            >{{ cart.length > 3 ? "MORE IN CART..." : "VIEW BAG" }}</a
+          >
+          <a
+            routerLink="/checkout"
+            (click)="toggleModal()"
+            class="text-[14px] px-5 py-3 text-white text-center flex-1 bg-[#5ECE7B] hover:bg-green-600 transition-all duration-300 ease-in-out"
+            >CHECK OUT</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

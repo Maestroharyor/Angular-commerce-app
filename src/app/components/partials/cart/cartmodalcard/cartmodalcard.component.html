@@ -1,0 +1,50 @@
+<div class="flex justify-between gap-3">
+  <div class="w-[50%] flex flex-col gap-3">
+    <p class="text-[16px]">Apollo Running Short</p>
+    <div class="text-[16px]">
+      <p>Price</p>
+      {{ 50 | currency : "USD" }}
+    </div>
+    <div class="">
+      <p class="mb-1.5 text-[16px]">Size:</p>
+      <div class="flex gap-3">
+        <div
+          *ngFor="let size of product.size"
+          class="py-1 px-3 border-2 text-[14px]"
+        >
+          {{ size }}
+        </div>
+      </div>
+    </div>
+    <div class="text-[16px]">
+      <p class="mb-1.5">Color:</p>
+      <div class="flex gap-3">
+        <div
+          *ngFor="let color of product.color"
+          class="w-[22px] h-[22px]"
+          [ngStyle]="{ 'background-color': color.hexcode }"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="w-[50%] flex gap-1 overflow-hidden">
+    <div class="flex flex-col justify-between items-center">
+      <button
+        class="py-1 px-3 text-[14px] border-2 hover:bg-black hover:text-white transition-all duration-300 ease-in-out"
+        (click)="addItemToCart(product)"
+      >
+        +
+      </button>
+      <p>{{ product.quantity }}</p>
+      <button
+        class="py-1 px-3 border-2 text-[14px] hover:bg-black hover:text-white transition-all duration-300 ease-in-out"
+        (click)="removeItemFromCart(product)"
+      >
+        -
+      </button>
+    </div>
+    <figure class="w-[calc(100%-20px)] flex items-center overflow-hidden">
+      <img [src]="product.featuredImage" class="w-[152px]" />
+    </figure>
+  </div>
+</div>

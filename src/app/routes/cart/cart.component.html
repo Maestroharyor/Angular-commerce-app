@@ -1,0 +1,50 @@
+<main
+  class="max-w-[1200px] px-5 md:px-10 mx-auto pt-16 pb-24 flex flex-col gap-7"
+  [@cartAnimation]
+>
+  <div class="">
+    <a
+      routerLink="/"
+      class="hover:text-green-500 transition-all duration-300 ease-in-out"
+      ><fa-icon [icon]="faArrowLeft"></fa-icon> <span> All Products</span></a
+    >
+  </div>
+  <h1 class="text-[42px] color-[#1D1F22]">CART</h1>
+
+  <div
+    class="py-5 flex flex-col gap-8 divide-y"
+    *ngIf="cart.length; else noCartContent"
+  >
+    <app-cart-page-card
+      [product]="product"
+      *ngFor="let product of cart"
+    ></app-cart-page-card>
+  </div>
+
+  <ng-template #noCartContent>
+    <div class="pt-5 pb-8 text-2xl">
+      <p class="mb-2">No items added to cart yet...</p>
+      <p class="italic text-gray-400 text-xl">
+        Time to get your shopping groove on 👌
+      </p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="total" class="flex flex-col gap-5">
+    <p>
+      Tax 21%:
+      <span class="font-bold">{{ total | tax | currency : "USD" }}</span>
+    </p>
+    <p>
+      Quantity: <span class="font-bold">{{ totalQuantity }}</span>
+    </p>
+    <p>
+      Total: <span class="font-bold">{{ total | currency : "USD" }}</span>
+    </p>
+    <a
+      routerLink="/checkout"
+      class="text-[14px] px-5 md:px-10 py-3 text-white text-center flex-1 bg-[#5ECE7B] hover:bg-green-600 transition-all duration-300 ease-in-out w-fit"
+      >ORDER</a
+    >
+  </div>
+</main>
